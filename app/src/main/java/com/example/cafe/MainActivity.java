@@ -25,18 +25,16 @@ public class MainActivity extends AppCompatActivity{
         buttonRegister = findViewById(R.id.buttonRegister);
         goToRegister = findViewById(R.id.goToRegister);
 
-        Intent intentFee = new Intent(this, CreateOrderActivity.class);
-
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = editTextTextPersonName.getText().toString().trim();
                 String password = editTextTextPersonName.getText().toString().trim();
                 if (!name.isEmpty() && !password.isEmpty()) {
-                    Intent intentEntrance = new Intent(getApplicationContext(), CreateOrderActivity.class);
-                    intentEntrance.putExtra("name", name);
-                    intentEntrance.putExtra("password", password);
-                    startActivity(intentEntrance);
+                    Intent intent = new Intent(getApplicationContext(), CreateOrderActivity.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, R.string.warning_fill_fields, Toast.LENGTH_SHORT).show();
                 }

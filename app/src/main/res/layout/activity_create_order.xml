@@ -38,15 +38,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewHello">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButtonTea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_margin="8dp"
+            android:checked="true"
             android:text="@string/tea" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButtonCoffee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -112,22 +113,37 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_margin="8dp"
+        android:entries="@array/options_of_tea"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewChooseDrink" />
+
+<Spinner
+        android:id="@+id/spinnerCoffee"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
         android:entries="@array/options_of_coffee"
         android:spinnerMode="dialog"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewChooseDrink" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonCreate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:backgroundTint="#99373E43"
         android:text="@string/make_an_order"
-        android:textSize="40sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
