@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateOrderActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cafe_image" />
+
+    <TextView
+        android:id="@+id/textViewHello"
+        style="@style/Text_of_hello"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/order_question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHello">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:text="@string/tea" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:text="@string/coffee" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewAdditions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/what_to_add"
+        style="@style/Text_of_hello"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMilk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/milk"
+        android:layout_margin="8dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdditions"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxSugar"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxSugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sugar"
+        android:layout_margin="8dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxMilk"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdditions"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxLemon" />
+
+    <CheckBox
+        android:id="@+id/checkBoxLemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lemon"
+        android:layout_margin="8dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxSugar"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdditions" />
+
+    <TextView
+        android:id="@+id/textViewChooseDrink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/type_of_drink"
+        style="@style/Text_of_hello"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxSugar" />
+
+    <Spinner
+        android:id="@+id/spinnerTea"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:entries="@array/options_of_coffee"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewChooseDrink" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:backgroundTint="#99373E43"
+        android:text="@string/make_an_order"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTea" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+</androidx.constraintlayout.widget.ConstraintLayout>

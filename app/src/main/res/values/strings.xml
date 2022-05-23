@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">Cafe</string>
+    <string name="cafe_logo">Логотип кафе</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="register">Регистрация</string>
+    <string name="input">Войти</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="warning_fill_fields">Все поля должны быть заполнены</string>
+    <string name="type_of_drink">Выберете вид напитка</string>
+    <string name="order_question">Привет, Клиент! Что будете заказывать?</string>
+    <string name="what_to_add">Что добавить в ваш чай?</string>
+    <string name="make_an_order">Сделать заказ</string>
+    <string name="tea">Чай</string>
+    <string name="coffee">Кофе</string>
+    <string name="milk">Молоко</string>
+    <string name="sugar">Сахар</string>
+    <string name="lemon">Лемон</string>
+
+    <string-array name="options_of_coffee">
+        <item>Американо</item>
+        <item>Эспрессо</item>
+        <item>Латте</item>
+    </string-array>
+
+    <string-array name="options_of_tea">
+        <item>Черный</item>
+        <item>Зеленные</item>
+        <item>Травяной</item>
+    </string-array>
 </resources>
