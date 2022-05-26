@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -25,12 +27,14 @@ public class CreateOrderActivity extends AppCompatActivity {
     private Button buttonCreate;
     private TextView textViewHello;
     private TextView textViewAdditions;
+    private EditText editTextNumberTable;
 
     private StringBuilder builderAdditions;
 
     private String name;
     private String password;
     private String drink;
+    private String numberTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class CreateOrderActivity extends AppCompatActivity {
         }
 
         String hello = String.format(getString(R.string.order_question), name);
+
         builderAdditions = new StringBuilder();
         radioGroup = findViewById(R.id.radioGroup);
         radioButtonTea = findViewById(R.id.radioButtonTea);
@@ -58,19 +63,19 @@ public class CreateOrderActivity extends AppCompatActivity {
         buttonCreate = findViewById(R.id.buttonCreate);
         textViewHello = findViewById(R.id.textViewHello);
         textViewAdditions = findViewById(R.id.textViewAdditions);
+        editTextNumberTable = findViewById(R.id.editTextNumberTable);
         textViewHello.setText(hello);
 
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                int id = radioGroup.getId();
-                if (id == R.id.radioButtonTea){
+                if (i == R.id.radioButtonTea){
                     drink = getString(R.string.tea);
                     spinnerTea.setVisibility(View.VISIBLE);
                     spinnerCoffee.setVisibility(View.INVISIBLE);
                     checkBoxLemon.setVisibility(View.VISIBLE);
-                }else if(id == R.id.radioButtonCoffee){
+                }else if(i == R.id.radioButtonCoffee){
                     drink = getString(R.string.coffee);
                     spinnerTea.setVisibility(View.INVISIBLE);
                     spinnerCoffee.setVisibility(View.VISIBLE);
@@ -84,7 +89,43 @@ public class CreateOrderActivity extends AppCompatActivity {
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                numberTable = editTextNumberTable.getText().toString().trim();
+                if (!numberTable.isEmpty()) {
+                    builderAdditions.setLength(0);
+                    if (checkBoxMilk.isChecked()) {
+                        builderAdditions.append(getString(R.string.milk)).append(" ");
+                    }
+                    if (checkBoxSugar.isChecked()) {
+                        builderAdditions.append(getString(R.string.sugar)).append(" ");
+                    }
+                    if (checkBoxLemon.isChecked() && drink.equals(getString(R.string.tea))) {
+                        builderAdditions.append(getString(R.string.lemon)).append(" ");
+                    }
+                    String optionOfDrink = "";
+                    if (drink.equals(getString(R.string.tea))){
+                        optionOfDrink = spinnerTea.getSelectedItem().toString();
+                    }else {
+                        optionOfDrink = spinnerCoffee.getSelectedItem().toString();
+                    }
+                    String order = String.format(getString(R.string.order), name, numberTable, drink, optionOfDrink);
+                    String additions;
+                    if (builderAdditions.length() > 0){
+                        additions = getString(R.string.additions)+ builderAdditions.toString();
+                    }else {
+                        additions = "";
+                    }
+                    String fullOrder = order+additions;
 
+                    Intent viber = new Intent(getApplicationContext(), Viber.class);
+                    viber.putExtra("viber", fullOrder);
+                    startActivity(viber);
+
+                    Intent intentOrder = new Intent(getApplicationContext(), OrderDitailActivity.class);
+                    intentOrder.putExtra("order", name);
+                    startActivity(intentOrder);
+                }else {
+                    Toast.makeText(CreateOrderActivity.this, R.string.table_toast, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

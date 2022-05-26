@@ -11,6 +11,7 @@
     <string name="warning_fill_fields">Все поля должны быть заполнены</string>
     <string name="type_of_drink">Выберете вид напитка</string>
     <string name="order_question">Привет, %s! Что будете заказывать?</string>
+    <string name="default_what_to_add">Что добавить в ваш Чай?</string>
     <string name="what_to_add">Что добавить в ваш %s?</string>
     <string name="make_an_order">Сделать \n заказ</string>
     <string name="tea">Чай</string>
@@ -18,6 +19,13 @@
     <string name="milk">Молоко</string>
     <string name="sugar">Сахар</string>
     <string name="lemon">Лемон</string>
+    <string name="table_number">Укажите номер вашего столика</string>
+    <string name="your_number">Ваш номер</string>
+    <string name="order">Имя: %s\nСтол: %s\nНапиток: %s\nВид напитка: %s\n</string>
+    <string name="additions">Необходимые добавки: </string>
+    <string name="table_toast">Укажите пожалуста номер столика</string>
+    <string name="text_expectation">%s, благодарим Вас за заказ.\nВаш заказ будет готов в кратчайший срок.</string>
+    <string name="error">Извените произошла ошибка попробуйте снова</string>
 
     <string-array name="options_of_coffee">
         <item>Американо</item>

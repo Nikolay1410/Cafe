@@ -5,8 +5,9 @@
       <map>
         <entry key="..\:/Users/kalya/AndroidStudioProjects/GitHab/Cafe/app/src/main/res/layout-land/activity_main.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/kalya/AndroidStudioProjects/GitHab/Cafe/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.2057915057915058" />
-        <entry key="..\:/Users/kalya/AndroidStudioProjects/GitHab/Cafe/app/src/main/res/layout/activity_create_order.xml" value="0.2879999900124293" />
+        <entry key="..\:/Users/kalya/AndroidStudioProjects/GitHab/Cafe/app/src/main/res/layout/activity_create_order.xml" value="0.25" />
         <entry key="..\:/Users/kalya/AndroidStudioProjects/GitHab/Cafe/app/src/main/res/layout/activity_main.xml" value="0.27760416666666665" />
+        <entry key="..\:/Users/kalya/AndroidStudioProjects/GitHab/Cafe/app/src/main/res/layout/activity_order_ditail.xml" value="0.2564814814814815" />
       </map>
     </option>
   </component>
