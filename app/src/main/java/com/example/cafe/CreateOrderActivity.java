@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,23 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CreateOrderActivity extends AppCompatActivity {
-    private RadioGroup radioGroup;
-    private RadioButton radioButtonTea;
-    private RadioButton radioButtonCoffee;
     private CheckBox checkBoxMilk;
     private CheckBox checkBoxSugar;
     private CheckBox checkBoxLemon;
     private Spinner spinnerTea;
     private Spinner spinnerCoffee;
-    private Button buttonCreate;
-    private TextView textViewHello;
     private TextView textViewAdditions;
     private EditText editTextNumberTable;
 
     private StringBuilder builderAdditions;
 
     private String name;
-    private String password;
     private String drink;
     private String numberTable;
 
@@ -44,24 +37,23 @@ public class CreateOrderActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra("password") && intent.hasExtra("name")) {
             name = intent.getStringExtra("name");
-            password = intent.getStringExtra("password");
+            String password = intent.getStringExtra("password");
         }else {
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
         }
-
         String hello = String.format(getString(R.string.order_question), name);
 
         builderAdditions = new StringBuilder();
-        radioGroup = findViewById(R.id.radioGroup);
-        radioButtonTea = findViewById(R.id.radioButtonTea);
-        radioButtonCoffee = findViewById(R.id.radioButtonCoffee);
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        RadioButton radioButtonTea = findViewById(R.id.radioButtonTea);
+        RadioButton radioButtonCoffee = findViewById(R.id.radioButtonCoffee);
         checkBoxMilk = findViewById(R.id.checkBoxMilk);
         checkBoxSugar = findViewById(R.id.checkBoxSugar);
         checkBoxLemon = findViewById(R.id.checkBoxLemon);
         spinnerTea = findViewById(R.id.spinnerTea);
         spinnerCoffee = findViewById(R.id.spinnerCoffee);
-        buttonCreate = findViewById(R.id.buttonCreate);
-        textViewHello = findViewById(R.id.textViewHello);
+        Button buttonCreate = findViewById(R.id.buttonCreate);
+        TextView textViewHello = findViewById(R.id.textViewHello);
         textViewAdditions = findViewById(R.id.textViewAdditions);
         editTextNumberTable = findViewById(R.id.editTextNumberTable);
         textViewHello.setText(hello);
@@ -116,11 +108,8 @@ public class CreateOrderActivity extends AppCompatActivity {
                     }
                     String fullOrder = order+additions;
 
-                    Intent viber = new Intent(getApplicationContext(), Viber.class);
-                    viber.putExtra("viber", fullOrder);
-                    startActivity(viber);
-
                     Intent intentOrder = new Intent(getApplicationContext(), OrderDitailActivity.class);
+                    intentOrder.putExtra("viber", fullOrder);
                     intentOrder.putExtra("order", name);
                     startActivity(intentOrder);
                 }else {

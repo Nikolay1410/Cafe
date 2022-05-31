@@ -12,18 +12,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
     private EditText editTextTextPersonName;
-    private EditText editTextTextPassword;
-    private Button buttonRegister;
-    private TextView goToRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
-        editTextTextPassword = findViewById(R.id.editTextTextPassword);
-        buttonRegister = findViewById(R.id.buttonRegister);
-        goToRegister = findViewById(R.id.goToRegister);
+        EditText editTextTextPassword = findViewById(R.id.editTextTextPassword);
+        Button buttonRegister = findViewById(R.id.buttonRegister);
+        TextView goToRegister = findViewById(R.id.goToRegister);
+
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
