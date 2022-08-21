@@ -6,14 +6,13 @@
     <string name="welcome">Добро пожаловать</string>
     <string name="register">Регистрация</string>
     <string name="input">Войти</string>
-    <string name="enter_login">Введите логин</string>
-    <string name="enter_password">Введите пароль</string>
-    <string name="warning_fill_fields">Все поля должны быть заполнены</string>
+    <string name="enter_login">Введите ваше имя</string>
+    <string name="warning_fill_fields">Введите ваше имя</string>
     <string name="type_of_drink">Выберете вид напитка</string>
     <string name="order_question">Привет, %s! Что будете заказывать?</string>
     <string name="default_what_to_add">Что добавить в ваш Чай?</string>
     <string name="what_to_add">Что добавить в ваш %s?</string>
-    <string name="make_an_order">Сделать \n заказ</string>
+    <string name="make_an_order">Заказать</string>
     <string name="tea">Чай</string>
     <string name="coffee">Кофе</string>
     <string name="milk">Молоко</string>
@@ -21,11 +20,19 @@
     <string name="lemon">Лемон</string>
     <string name="table_number">Укажите номер вашего столика</string>
     <string name="your_number">Ваш номер</string>
-    <string name="order">Имя: %s\nСтол: %s\nНапиток: %s\nВид напитка: %s\n</string>
+    <string name="order">Имя: %s\nСтол: %s\nНапиток: %s\nВид напитка: %s\nДесерт: %s\n</string>
     <string name="additions">Необходимые добавки: </string>
     <string name="table_toast">Укажите пожалуста номер столика</string>
     <string name="text_expectation">%s, благодарим Вас за заказ.\nВаш заказ будет готов в кратчайший срок.</string>
     <string name="error">Извените произошла ошибка попробуйте снова</string>
+    <string name="register_stock">Пройдите регистрацию для участия в акциях</string>
+    <string name="desserts">Десерты</string>
+    <string name="action_title">Пройдя регистрацию вы даете согласие на рассылку акционных предложений.</string>
+    <string name="field_fullness">Заполните пожалуста все поля</string>
+    <string name="your_name">Ваше имя:</string>
+    <string name="your_phone">Ваш номер: +380</string>
+    <string name="data_birth">Дата вашнго рожденья:</string>
+    <string name="data_my_birth">01.01.1990</string>
 
     <string-array name="options_of_coffee">
         <item>Американо</item>
@@ -37,5 +44,12 @@
         <item>Черный</item>
         <item>Зеленные</item>
         <item>Травяной</item>
+    </string-array>
+
+    <string-array name="desserts">
+        <item>Без десерта</item>
+        <item>Чизкейк</item>
+        <item>Круасан</item>
+        <item>Кекс</item>
     </string-array>
 </resources>

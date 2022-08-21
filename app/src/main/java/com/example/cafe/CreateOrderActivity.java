@@ -22,6 +22,7 @@ public class CreateOrderActivity extends AppCompatActivity {
     private Spinner spinnerCoffee;
     private TextView textViewAdditions;
     private EditText editTextNumberTable;
+    private Spinner spinnerDesserts;
 
     private StringBuilder builderAdditions;
 
@@ -35,9 +36,8 @@ public class CreateOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_order);
         drink = getString(R.string.tea);
         Intent intent = getIntent();
-        if(intent.hasExtra("password") && intent.hasExtra("name")) {
+        if(intent.hasExtra("name")) {
             name = intent.getStringExtra("name");
-            String password = intent.getStringExtra("password");
         }else {
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
         }
@@ -56,65 +56,63 @@ public class CreateOrderActivity extends AppCompatActivity {
         TextView textViewHello = findViewById(R.id.textViewHello);
         textViewAdditions = findViewById(R.id.textViewAdditions);
         editTextNumberTable = findViewById(R.id.editTextNumberTable);
+        spinnerDesserts = findViewById(R.id.spinnerDesserts);
         textViewHello.setText(hello);
 
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.radioButtonTea){
-                    drink = getString(R.string.tea);
-                    spinnerTea.setVisibility(View.VISIBLE);
-                    spinnerCoffee.setVisibility(View.INVISIBLE);
-                    checkBoxLemon.setVisibility(View.VISIBLE);
-                }else if(i == R.id.radioButtonCoffee){
-                    drink = getString(R.string.coffee);
-                    spinnerTea.setVisibility(View.INVISIBLE);
-                    spinnerCoffee.setVisibility(View.VISIBLE);
-                    checkBoxLemon.setVisibility(View.INVISIBLE);
-                }
-                String additions = String.format(getString(R.string.what_to_add), drink);
-                textViewAdditions.setText(additions);
+        radioGroup.setOnCheckedChangeListener((radioGroup1, i) -> {
+            if (i == R.id.radioButtonTea){
+                drink = getString(R.string.tea);
+                spinnerTea.setVisibility(View.VISIBLE);
+                spinnerCoffee.setVisibility(View.INVISIBLE);
+                checkBoxLemon.setVisibility(View.VISIBLE);
+            }else if(i == R.id.radioButtonCoffee){
+                drink = getString(R.string.coffee);
+                spinnerTea.setVisibility(View.INVISIBLE);
+                spinnerCoffee.setVisibility(View.VISIBLE);
+                checkBoxLemon.setVisibility(View.INVISIBLE);
             }
+            String additions = String.format(getString(R.string.what_to_add), drink);
+            textViewAdditions.setText(additions);
         });
 
-        buttonCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numberTable = editTextNumberTable.getText().toString().trim();
-                if (!numberTable.isEmpty()) {
-                    builderAdditions.setLength(0);
-                    if (checkBoxMilk.isChecked()) {
-                        builderAdditions.append(getString(R.string.milk)).append(" ");
-                    }
-                    if (checkBoxSugar.isChecked()) {
-                        builderAdditions.append(getString(R.string.sugar)).append(" ");
-                    }
-                    if (checkBoxLemon.isChecked() && drink.equals(getString(R.string.tea))) {
-                        builderAdditions.append(getString(R.string.lemon)).append(" ");
-                    }
-                    String optionOfDrink = "";
-                    if (drink.equals(getString(R.string.tea))){
-                        optionOfDrink = spinnerTea.getSelectedItem().toString();
-                    }else {
-                        optionOfDrink = spinnerCoffee.getSelectedItem().toString();
-                    }
-                    String order = String.format(getString(R.string.order), name, numberTable, drink, optionOfDrink);
-                    String additions;
-                    if (builderAdditions.length() > 0){
-                        additions = getString(R.string.additions)+ builderAdditions.toString();
-                    }else {
-                        additions = "";
-                    }
-                    String fullOrder = order+additions;
-
-                    Intent intentOrder = new Intent(getApplicationContext(), OrderDitailActivity.class);
-                    intentOrder.putExtra("viber", fullOrder);
-                    intentOrder.putExtra("order", name);
-                    startActivity(intentOrder);
-                }else {
-                    Toast.makeText(CreateOrderActivity.this, R.string.table_toast, Toast.LENGTH_SHORT).show();
+        buttonCreate.setOnClickListener(view -> {
+            numberTable = editTextNumberTable.getText().toString().trim();
+            if (!numberTable.isEmpty()) {
+                builderAdditions.setLength(0);
+                if (checkBoxMilk.isChecked()) {
+                    builderAdditions.append(getString(R.string.milk)).append(" ");
                 }
+                if (checkBoxSugar.isChecked()) {
+                    builderAdditions.append(getString(R.string.sugar)).append(" ");
+                }
+                if (checkBoxLemon.isChecked() && drink.equals(getString(R.string.tea))) {
+                    builderAdditions.append(getString(R.string.lemon)).append(" ");
+                }
+                String optionOfDrink;
+                if (drink.equals(getString(R.string.tea))){
+                    optionOfDrink = spinnerTea.getSelectedItem().toString();
+                }else {
+                    optionOfDrink = spinnerCoffee.getSelectedItem().toString();
+                }
+
+                String dessert = spinnerDesserts.getSelectedItem().toString();
+
+                String order = String.format(getString(R.string.order), name, numberTable, drink, optionOfDrink, dessert);
+                String additions;
+                if (builderAdditions.length() > 0){
+                    additions = getString(R.string.additions)+ builderAdditions.toString();
+                }else {
+                    additions = "";
+                }
+                String fullOrder = order+additions;
+
+                Intent intentOrder = new Intent(getApplicationContext(), OrderDetailActivity.class);
+                intentOrder.putExtra("viber", fullOrder);
+                intentOrder.putExtra("order", name);
+                startActivity(intentOrder);
+            }else {
+                Toast.makeText(CreateOrderActivity.this, R.string.table_toast, Toast.LENGTH_SHORT).show();
             }
         });
     }

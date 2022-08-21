@@ -13,15 +13,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-public class OrderDitailActivity extends AppCompatActivity {
-
-    private static String order;
+public class OrderDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +62,12 @@ public class OrderDitailActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.error, Toast.LENGTH_SHORT).show();
         }
     }
-    private static class DownloadTask extends AsyncTask<String, Void, String> {
+    public static class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
-            StringBuilder resalt = new StringBuilder();
-            URL url = null;
+            StringBuilder result = new StringBuilder();
+            URL url;
             HttpURLConnection urlConnection = null;
             try {
                 url = new URL(strings[0]);
@@ -80,7 +77,7 @@ public class OrderDitailActivity extends AppCompatActivity {
                 BufferedReader bufferedReader = new BufferedReader(reader);
                 String line = bufferedReader.readLine();
                 while (line!=null){
-                    resalt.append(line);
+                    result.append(line);
                     line = bufferedReader.readLine();
                 }
             } catch (IOException e) {
@@ -90,7 +87,7 @@ public class OrderDitailActivity extends AppCompatActivity {
                     urlConnection.disconnect();
                 }
             }
-            return resalt.toString();
+            return result.toString();
         }
     }
 }

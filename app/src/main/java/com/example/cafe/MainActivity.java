@@ -3,7 +3,9 @@ package com.example.cafe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,25 +20,31 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
-        EditText editTextTextPassword = findViewById(R.id.editTextTextPassword);
         Button buttonRegister = findViewById(R.id.buttonRegister);
         TextView goToRegister = findViewById(R.id.goToRegister);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String name = preferences.getString("name", null);
+        if (name != null){
+            editTextTextPersonName.setText(name);
+        }
 
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = editTextTextPersonName.getText().toString().trim();
-                String password = editTextTextPersonName.getText().toString().trim();
-                if (!name.isEmpty() && !password.isEmpty()) {
-                    Intent intent = new Intent(getApplicationContext(), CreateOrderActivity.class);
-                    intent.putExtra("name", name);
-                    intent.putExtra("password", password);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(MainActivity.this, R.string.warning_fill_fields, Toast.LENGTH_SHORT).show();
-                }
+        buttonRegister.setOnClickListener(view -> {
+            String name1 = editTextTextPersonName.getText().toString().trim();
+            SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            preferences1.edit().putString("name", name1).apply();
+            if (!name1.isEmpty()) {
+                Intent intent = new Intent(getApplicationContext(), CreateOrderActivity.class);
+                intent.putExtra("name", name1);
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, R.string.warning_fill_fields, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void onClickRegister(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }
